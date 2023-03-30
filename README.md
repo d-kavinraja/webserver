@@ -28,39 +28,44 @@ Testing the webserver
 
 ## PROGRAM:
 ```
-from http.server import HTTPServer, BaseHTTPRequestHandler
-content = """
-<!DOCTYPE html>
+from http.server import HTTPServer,BaseHTTPRequestHandler
+
+content='''
+<!doctype html>
 <html>
 <head>
-<title>My webserver</title>
+<title> My Web Server</title>
 </head>
 <body>
-<h1><u>Languages used in Web Development</u><h1>
-<ul>
-<li>HTML</li>
-<li>CSS</li>
-<li>JavaScript</li>
-<li>Bootstrap</li>
+<h1>Top Five Web Application Development Frameworks</h1>
+<h2>1.Django</h2>
+<h2>2. MEAN Stack</h2>
+<h2>3. React </h2>
 </body>
 </html>
-"""
-class myhandler(BaseHTTPRequestHandler):
+'''
+
+class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
-        print("request received")
-        self.send_response(200)
-        self.send_header('content-type', 'text/html; charset=utf-8')
+        print("Get request received...")
+        self.send_response(200) 
+        self.send_header("content-type", "text/html")       
         self.end_headers()
         self.wfile.write(content.encode())
-server_address = ('',80)
-httpd = HTTPServer(server_address,myhandler)
-print("my webserver is running...")
+
+print("This is my webserver") 
+server_address =('',8000)
+httpd = HTTPServer(server_address,MyServer)
 httpd.serve_forever()
 ```
 
 ## OUTPUT:
-![OUTPUT](./OUTPUT%201.png)
-![output](./OUTPUT%202.png)
+## CLIENT OUTPUT:
+![OUTPUT](./IMG/CLIENT%20OUTPUT.png)
+
+## SERVER OUTPUT:
+![OUTPUT](./IMG/SERVER%20OUTPUT.png)
+
 
 ## RESULT:
 The program is executed succesfully
